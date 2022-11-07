@@ -36,7 +36,6 @@ const Header = () => {
           className={`collapse navbar-collapse ${
             mobileMenu ? "" : styles.mobileMenu
           }`}
-          id="navbarSupportedContent"
         >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
