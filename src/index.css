@@ -18,16 +18,16 @@ h2 {
   text-align: center;
   text-transform: capitalize;
 }
-.mainBtn{
+.mainBtn {
   padding: 5px 20px;
   background-color: #4c2481;
   color: #ffffff;
   border: 1px solid #708124;
   text-transform: capitalize;
   border-radius: 17px;
-  transition: all linear .3s;
+  transition: all linear 0.3s;
 }
-.mainBtn:hover{
+.mainBtn:hover {
   background-color: #708124;
   color: #ffffff;
 }
@@ -41,4 +41,9 @@ li {
 }
 .active {
   color: #098d3c;
+}
+.praText {
+  font-family: "Josefin Slab", serif;
+  color: #333233;
+  font-size: 18px;;
 }
