@@ -1,5 +1,6 @@
 /* google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@700&family=Merienda&display=swap");
 
 /* common css */
 * {
@@ -8,8 +9,27 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body{
+body {
   background-color: #ebeeee;
+}
+h2 {
+  font-family: "Merienda", cursive;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+}
+.mainBtn{
+  padding: 5px 20px;
+  background-color: #4c2481;
+  color: #ffffff;
+  border: 1px solid #708124;
+  text-transform: capitalize;
+  border-radius: 17px;
+  transition: all linear .3s;
+}
+.mainBtn:hover{
+  background-color: #708124;
+  color: #ffffff;
 }
 a,
 a:hover {
@@ -19,6 +39,6 @@ a:hover {
 li {
   list-style: none;
 }
-.active{
+.active {
   color: #098d3c;
 }
