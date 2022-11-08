@@ -16,10 +16,10 @@ const AddService = () => {
             <div className="col-md-8 offset-md-2">
               <div className="card p-3 mb-4 shadow">
                 <Form >
-                  <FormInput label="Title" type="text" name="title" placeholder="service name" />
-                  <FormInput label="Photo URL" type="text" name="image" placeholder="service photo url" />
-                  <FormInput label="Price" type="number" name="price" placeholder="price" />
-                  <textarea name="description" className="form-control" rows="7" placeholder="description.."></textarea>
+                  <FormInput label="Title" type="text" name="title" placeholder="service name" required/>
+                  <FormInput label="Photo URL" type="text" name="image" placeholder="service photo url" required/>
+                  <FormInput label="Price" type="number" name="price" placeholder="price" required/>
+                  <textarea name="description" className="form-control" rows="7" placeholder="description.." required></textarea>
                   <Button className="mt-2">Add <FaArrowRight/> </Button>
                 </Form>
               </div>
