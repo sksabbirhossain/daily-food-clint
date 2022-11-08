@@ -17,9 +17,9 @@ const Home = () => {
           <h2>our Services</h2>
           <div className="card-items mt-4">
             <div className="row">
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
+              <ServiceCard service="data"/>
+              <ServiceCard service="data"/>
+              <ServiceCard service="data"/>
             </div>
           </div>
           <div className="text-center">
