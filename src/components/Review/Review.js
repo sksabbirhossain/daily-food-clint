@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaArrowRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -9,6 +9,8 @@ import FormInput from "../FormInput/FormInput";
 
 const Review = () => {
   const [review, setReview] = useState("");
+  const [reload, setReload] = useState(true);
+  const [getReviews, setGetReviews] = useState([]);
   const { currentUser } = useAuth();
   const { id } = useParams();
 
@@ -31,11 +33,23 @@ const Review = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Review Added successful");
+        setReload(!reload);
       })
       .catch((err) => {
         toast.error("Something worng try again");
       });
   };
+
+  // get all review
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/reviews/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.data);
+        setGetReviews(data.data);
+      });
+  }, [id, reload]);
+
   return (
     <div>
       {/* review sections */}
@@ -61,22 +75,29 @@ const Review = () => {
         </div>
 
         {/* all reviews */}
-        <div className="d-md-flex shadow py-2 mb-3 rounded ps-3 justify-content-center align-items-center">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-            alt=""
-            className="pe-2 pb-2"
-            style={{ width: "50px", height: "50px", borderRadius: "50px" }}
-          />
-          <div>
-            <h5 className="m-0 p-0">sk sabbir hossain</h5>
-            <p className="m-0 p-0">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Voluptate ea quasi eligendi. Consequuntur earum, deleniti officia
-              quaerat cupiditate suscipit voluptate.
-            </p>
-          </div>
-        </div>
+        {getReviews.map((getReview) => (
+          <>
+            <div
+              key={getReview._id}
+              className="d-md-flex shadow py-2 mb-3 rounded ps-3 justify-content-start align-items-center"
+            >
+              <img
+                src={
+                  getReview.user_img !== null
+                    ? getReview.user_img
+                    : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                }
+                alt=""
+                className="pe-2 pb-2"
+                style={{ width: "50px", height: "50px", borderRadius: "50px" }}
+              />
+              <div>
+                <h5 className="m-0 p-0">{getReview.user_name}</h5>
+                <p className="m-0 p-0">{getReview.review}</p>
+              </div>
+            </div>
+          </>
+        ))}
       </div>
     </div>
   );
