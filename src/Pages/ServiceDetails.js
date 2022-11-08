@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 import { useParams } from "react-router-dom";
 import Review from "../components/Review/Review";
 
@@ -28,11 +30,16 @@ const ServiceDetails = () => {
               </div>
               <div className="col-md-6">
                 <div>
-                  <img
-                    src={service.image}
-                    className="img-fluid rounded"
-                    alt=""
-                  />
+                  <PhotoProvider>
+                    <PhotoView src={service.image}>
+                      <img
+                        src={service.image}
+                        className="img-fluid rounded"
+                        alt=""
+                      />
+                    </PhotoView>
+                  </PhotoProvider>
+
                   <div className="shadow mt-5 p-2 rounded ">
                     <h2>price: {service.price} taka</h2>
                   </div>
