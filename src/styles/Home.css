@@ -1,4 +1,15 @@
-.aboutUs{
-    background-color: gray;
-    border-radius: 10px;
+.aboutUs {
+  background-color: #cbd2d3;
+  border-radius: 10px;
+}
+
+.subscription{
+    
+}
+
+@media (min-width: 768px){
+  .subInupt {
+    width: 50%;
+    margin: 0 auto;
+  }
 }

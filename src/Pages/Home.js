@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
 import Slider from "../components/Slider/Slider";
+import SocialIcons from "../components/SocialIcons/SocialIcons";
 import aboutImg from "../images/aboutus/about.jpg";
 import "../styles/Home.css";
 
@@ -37,15 +38,15 @@ const Home = () => {
           <div className="aboutUs mt-4">
             <div className="row">
               <div className="col-md-6">
-                <div className="d-flex h-100 align-items-center">
-                  <p className="praText ps-4">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Velit quibusdam, nisi porro vero nostrum corporis delectus.
-                    Corrupti molestias beatae dignissimos, delectus dolor
-                    mollitia, architecto est repellat eaque quis debitis officia
-                    nihil cum modi perferendis nesciunt? Quis nobis, quos
-                    laudantium, consequatur
+                <div className="d-flex flex-column h-100 ps-4 justify-content-center align-items-start">
+                  <h3>About Services</h3>
+                  <p className="praText ">
+                    I am Sabbir. I am providing food dalivery services. I cook
+                    all my food at my home. I try to keep my diet very good . i
+                    also deliver the ordered food the order's home. and i didn't
+                    charge extra for that.
                   </p>
+                  <SocialIcons />
                 </div>
               </div>
               <div className="col-md-6">
@@ -57,6 +58,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      
     </>
   );
 };
