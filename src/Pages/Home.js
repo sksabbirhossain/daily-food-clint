@@ -1,7 +1,6 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer/Footer";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
 import Slider from "../components/Slider/Slider";
 import SocialIcons from "../components/SocialIcons/SocialIcons";
@@ -24,7 +23,7 @@ const Home = () => {
             </div>
           </div>
           <div className="text-center">
-            <Link to="/" className="mainBtn">
+            <Link to="/services" className="mainBtn">
               {" "}
               See All <FaArrowRight />{" "}
             </Link>
@@ -74,9 +73,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* footer section */}
-        <Footer />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ServiceCard = () => {
@@ -16,8 +17,9 @@ const ServiceCard = () => {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <Link to="/" class="btn btn-primary">
-            Go somewhere
+          <p className="card-text"><span className="fw-bold">Price:</span> 100 tk.</p>
+          <Link to="/services/:id " class="btn mainBtn">
+          view details <FaArrowRight/>
           </Link>
         </div>
       </div>
