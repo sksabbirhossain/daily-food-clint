@@ -59,7 +59,20 @@ const Home = () => {
         </div>
       </section>
 
-      
+      {/* subscription section */}
+      <section className="subscription mb-5">
+        <div className="container">
+          <h2 className="subText">Subscribe to newsletter</h2>
+          <div className="d-flex subInupt">
+            <input
+              type="email"
+              placeholder="Enter Your Email Address"
+              className="form-control  w-full "
+            />
+            <input type="button" className="mainBtn ms-2" value="Subscribe" />
+          </div>
+        </div>
+      </section>
     </>
   );
 };

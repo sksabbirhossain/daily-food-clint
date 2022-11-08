@@ -3,11 +3,28 @@
   border-radius: 10px;
 }
 
-.subscription{
-    
+.subscription {
+  background: linear-gradient(
+      rgba(5, 137, 245, 0.747),
+      rgba(0, 140, 255, 0.651)
+    ),
+    url("../images/pizza-20.jpg");
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subText {
+  color: #09ff00c9;
+  font-weight: bold;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .subInupt {
     width: 50%;
     margin: 0 auto;
