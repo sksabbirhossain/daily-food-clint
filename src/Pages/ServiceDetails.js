@@ -43,7 +43,7 @@ const ServiceDetails = () => {
         </div>
       </section>
       {/* review section */}
-      <Review />
+      <Review serviceName={service.title} />
     </>
   );
 };

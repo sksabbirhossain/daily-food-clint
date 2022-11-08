@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 import Form from "../Form/Form";
 import FormInput from "../FormInput/FormInput";
 
-const Review = () => {
+const Review = ({serviceName}) => {
   const [review, setReview] = useState("");
   const [reload, setReload] = useState(true);
   const [getReviews, setGetReviews] = useState([]);
@@ -28,6 +28,7 @@ const Review = () => {
         user_name: currentUser.displayName,
         user_img: currentUser.photoURL,
         review: review,
+        service_name: serviceName,
       }),
     })
       .then((res) => res.json())
