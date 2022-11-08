@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
@@ -8,6 +8,16 @@ import aboutImg from "../images/aboutus/about.jpg";
 import "../styles/Home.css";
 
 const Home = () => {
+  const [services, setServices] = useState([]);
+
+  // get all services data
+  useEffect(() => {
+    fetch("http://localhost:5000/api/services")
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data.homeData);
+      });
+  }, []);
   return (
     <>
       <Slider />
@@ -17,9 +27,9 @@ const Home = () => {
           <h2>our Services</h2>
           <div className="card-items mt-4">
             <div className="row">
-              <ServiceCard service="data"/>
-              <ServiceCard service="data"/>
-              <ServiceCard service="data"/>
+              {services.map((service) => (
+                <ServiceCard key={service._id} service={service} />
+              ))}
             </div>
           </div>
           <div className="text-center">

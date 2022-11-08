@@ -9,7 +9,6 @@ const Services = () => {
     fetch("http://localhost:5000/api/services")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
         setServices(data.data);
       });
   }, []);
