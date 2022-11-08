@@ -46,6 +46,11 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className={`${styles.navLink}`} to="/services" end>
+                services
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className={`${styles.navLink}`} to="/blog">
                 Blog
               </NavLink>
@@ -69,7 +74,11 @@ const Header = () => {
                   </NavLink>
                 </li>
 
-                <li className="nav-item" onClick={logOut} style={{cursor: "pointer"}}>
+                <li
+                  className="nav-item"
+                  onClick={logOut}
+                  style={{ cursor: "pointer" }}
+                >
                   <span className={`${styles.navLink}`}>LogOut</span>
                 </li>
               </>
