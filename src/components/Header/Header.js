@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import logo from "../../images/logo.png";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(true);
+  const { currentUser, logOut } = useAuth();
 
   return (
     <nav className={`navbar navbar-expand-lg shadow-sm ${styles.mainNav}`}>
@@ -53,24 +55,33 @@ const Header = () => {
                 About
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/my-reviews">
-                My reviews
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/add-service">
-                Add service
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={`${styles.navLink}`} to="/login">
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <span className={`${styles.navLink}`}>LogOut</span>
-            </li>
+
+            {currentUser ? (
+              <>
+                <li className="nav-item">
+                  <NavLink className={`${styles.navLink}`} to="/my-reviews">
+                    My reviews
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className={`${styles.navLink}`} to="/add-service">
+                    Add service
+                  </NavLink>
+                </li>
+
+                <li className="nav-item" onClick={logOut} style={{cursor: "pointer"}}>
+                  <span className={`${styles.navLink}`}>LogOut</span>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink className={`${styles.navLink}`} to="/login">
+                    Login
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

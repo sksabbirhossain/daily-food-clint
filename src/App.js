@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import ServiceDetails from "./Pages/ServiceDetails";
 import Services from "./Pages/Services";
 import Signup from "./Pages/Signup";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/:id" element={<ServiceDetails />} />
-        <Route path="/add-service" element={<AddService />} />
+        <Route path="/add-service" element={<PrivateRoute><AddService /></PrivateRoute>} />
       </Route>
     </Routes>
   );
