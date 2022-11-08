@@ -1,12 +1,67 @@
-import React from 'react';
+import { updateProfile } from 'firebase/auth';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button/Button';
 import Form from '../components/Form/Form';
 import FormInput from '../components/FormInput/FormInput';
+import { useAuth } from '../contexts/AuthContext';
 import styles from "../styles/Signup.module.css"
 
 const Signup = () => {
+  const [error, setError] = useState("");
+  const [username, setUsername] = useState("");
+  const [photourl, setPhotourl] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const { userSignup, googleSignin } = useAuth();
+  const navigate = useNavigate();
+
+    // form handle and signup function
+    const handleUserSignup = (e) => {
+      e.preventDefault();
+      //   validation
+      if (password !== confirmPassword) {
+        return setError("password not match");
+      }
+      userSignup(email, password, username, photourl)
+        .then((userInfo) => {
+          const user = userInfo.user;
+          console.log(user);
+          toast.success("User Create Successfull");
+  
+          // update profile
+          updateProfile(user, {
+            displayName: username,
+            photoURL: photourl,
+          });
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
+    };
+  
+  
+    // google signup function
+    const handleGoogleSignup = () => {
+      googleSignin()
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+          toast.success("Google SignUp successful");
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          toast.error(errorMessage);
+        });
+    };
+
+
     return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">
@@ -17,17 +72,23 @@ const Signup = () => {
           <div className="row">
             <div className="col-md-4 offset-md-4">
               <div className="card p-3 mb-4 shadow">
-                <Form >
-                  <FormInput label="User Name" type="text" name="name" placeholder="user name" required/>
-                  <FormInput label="User Email" type="email" name="email" placeholder="user email address" required/>
-                  <FormInput label="Photo URL" type="text" name="image" placeholder="photo url" required/>
-                  <FormInput label="Password" type="password" name="password" placeholder="password" required/>
-                  <FormInput label="Confirm Password" type="password" name="cpassword" placeholder="comfirm password" required/>
+                <Form onSubmit={handleUserSignup}>
+                  <FormInput label="User Name" type="text" name="name" placeholder="user name" value={username}
+                  onChange={(e) => setUsername(e.target.value)} required/>
+                  <FormInput label="User Email" type="email" name="email" placeholder="user email address" value={email}
+                  onChange={(e) => setEmail(e.target.value)} required/>
+                  <FormInput label="Photo URL" type="text" name="image" placeholder="photo url" value={photourl}
+                  onChange={(e) => setPhotourl(e.target.value)}/>
+                  <FormInput label="Password" type="password" name="password" placeholder="password" value={password}
+                  onChange={(e) => setPassword(e.target.value)} required/>
+                  <FormInput label="Confirm Password" type="password" name="cpassword" placeholder="comfirm password" value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)} required />
+                    <p className='text-danger fw-bold'>{ error}</p>
                   <Button className="mt-2">Signup <FaArrowRight/> </Button>
                 </Form>
                 <span className='py-2 text-center'>OR</span>
                 <div className='shadow py-3 text-center rounded'>
-                <span className={styles.signupIcons}>Signup With Google</span>
+                <span onClick={handleGoogleSignup} className={styles.signupIcons}>Signup With Google</span>
                 </div>
                 <p className="mt-2">
                     <small>
