@@ -4,10 +4,7 @@
 }
 
 .subscription {
-  background: linear-gradient(
-      rgba(5, 137, 245, 0.747),
-      rgba(0, 140, 255, 0.651)
-    ),
+  background: linear-gradient(#5ba7adbd, #5ba7adc5),
     url("../images/pizza-20.jpg");
   width: 100%;
   height: 200px;
@@ -20,7 +17,7 @@
   align-items: center;
 }
 .subText {
-  color: #09ff00c9;
+  color: #2a0c70c9;
   font-weight: bold;
 }
 

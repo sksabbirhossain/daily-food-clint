@@ -1,0 +1,13 @@
+.footerContent{
+    background-color: #dbd9d9;
+}
+.footer{
+    background-color: #03112b;
+    color: #dbd9d9;
+    width: 100%;
+    height: 60px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
