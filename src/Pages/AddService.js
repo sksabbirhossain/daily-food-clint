@@ -10,10 +10,11 @@ const AddService = () => {
   // add service
   const handleService = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/add-service", {
+    fetch("https://daily-food-server.vercel.app/api/add-service", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         title: e.target.title.value,

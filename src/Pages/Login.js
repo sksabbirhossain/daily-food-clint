@@ -17,8 +17,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
- 
-
   const from = location.state?.from?.pathname || "/";
   // login user
   const handleUserLogin = (e) => {
@@ -27,7 +25,7 @@ const Login = () => {
       .then((userInfo) => {
         const user = userInfo.user;
         //get jwt token
-        fetch("http://localhost:5000/api/jwt", {
+        fetch("https://daily-food-server.vercel.app/api/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

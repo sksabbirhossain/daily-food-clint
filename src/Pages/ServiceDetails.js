@@ -10,7 +10,7 @@ const ServiceDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/service/${id}`)
+    fetch(`https://daily-food-server.vercel.app/api/service/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data.data);
@@ -18,7 +18,7 @@ const ServiceDetails = () => {
   }, [id]);
 
   // add title
-dynamicTitle(`${service.title} - service details page`)
+  dynamicTitle(`${service.title} - service details page`);
   return (
     <>
       <section className="mt-3 mb-3">

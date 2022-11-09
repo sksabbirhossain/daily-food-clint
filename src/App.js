@@ -4,6 +4,7 @@ import ClintLayout from "./Layouts/ClintLayout";
 import About from "./Pages/About";
 import AddService from "./Pages/AddService";
 import Blog from "./Pages/Blog";
+import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import MyReviews from "./Pages/MyReviews";
@@ -26,7 +27,8 @@ function App() {
         <Route path="/services/:id" element={<ServiceDetails />} />
         <Route path="/add-service" element={<PrivateRoute><AddService /></PrivateRoute>} />
         <Route path="/my-reviews" element={<PrivateRoute><MyReviews /></PrivateRoute>} />
-        <Route path="/my-review/update/:id" element={<PrivateRoute><UpdateReview/></PrivateRoute> } />
+        <Route path="/my-review/update/:id" element={<PrivateRoute><UpdateReview /></PrivateRoute>} />
+        <Route path="*" element={<ErrorPage/> } />
       </Route>
     </Routes>
   );

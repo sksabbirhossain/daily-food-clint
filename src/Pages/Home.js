@@ -13,7 +13,7 @@ const Home = () => {
 
   // get all services data
   useEffect(() => {
-    fetch("http://localhost:5000/api/services")
+    fetch("https://daily-food-server.vercel.app/api/services")
       .then((res) => res.json())
       .then((data) => {
         setServices(data.homeData);
@@ -22,7 +22,7 @@ const Home = () => {
 
   // add title
   dynamicTitle("Home page");
-  
+
   return (
     <>
       <Slider />

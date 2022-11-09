@@ -16,7 +16,7 @@ const Review = ({ serviceName }) => {
   // handle review
   const handleReview = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/api/add-review", {
+    fetch("https://daily-food-server.vercel.app/api/add-review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -28,6 +28,7 @@ const Review = ({ serviceName }) => {
         user_img: currentUser.photoURL,
         review: review,
         service_name: serviceName,
+        currentdata: Date(),
       }),
     })
       .then((res) => res.json())
@@ -43,7 +44,7 @@ const Review = ({ serviceName }) => {
 
   // get all review
   useEffect(() => {
-    fetch(`http://localhost:5000/api/reviews/${id}`)
+    fetch(`https://daily-food-server.vercel.app/api/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.data);

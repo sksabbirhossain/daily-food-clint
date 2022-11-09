@@ -15,7 +15,7 @@ const UpdateReview = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/my-review/update/${id}?email=${currentUser?.email}`,
+      `https://daily-food-server.vercel.app/api/my-review/update/${id}?email=${currentUser?.email}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -24,7 +24,7 @@ const UpdateReview = () => {
     )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          logOut()
+          logOut();
         }
         return res.json();
       })
@@ -32,13 +32,13 @@ const UpdateReview = () => {
         console.log(data.data);
         setReviews(data.data);
       });
-  }, [id,currentUser?.email, logOut]);
+  }, [id, currentUser?.email, logOut]);
 
   // update review
   const handleReviewUpdate = (e) => {
     e.preventDefault();
     fetch(
-      `http://localhost:5000/api/my-review/update/${id}?email=${currentUser?.email}`,
+      `https://daily-food-server.vercel.app/api/my-review/update/${id}?email=${currentUser?.email}`,
       {
         method: "PATCH",
         headers: {
@@ -52,7 +52,7 @@ const UpdateReview = () => {
     )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          logOut()
+          logOut();
         }
         return res.json();
       })

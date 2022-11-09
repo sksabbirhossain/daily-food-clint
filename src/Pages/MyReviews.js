@@ -12,7 +12,7 @@ const MyReviews = () => {
   const { currentUser, logOut } = useAuth();
   const id = currentUser.uid;
   useEffect(() => {
-    fetch(`http://localhost:5000/api/my-reviews/${id}`)
+    fetch(`https://daily-food-server.vercel.app/api/my-reviews/${id}`)
       .then((res) => {
         return res.json();
       })
@@ -27,7 +27,7 @@ const MyReviews = () => {
   // delete review
   const deleteReview = (rid) => {
     fetch(
-      `http://localhost:5000/api/my-review/delete/${rid}?email=${currentUser?.email}`,
+      `https://daily-food-server.vercel.app/api/my-review/delete/${rid}?email=${currentUser?.email}`,
       {
         method: "DELETE",
         headers: {
