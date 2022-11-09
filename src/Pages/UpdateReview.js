@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const UpdateReview = () => {
   const [reviews, setReviews] = useState("");
@@ -19,7 +20,7 @@ const UpdateReview = () => {
       });
   }, [id]);
 
-    // update review
+  // update review
   const handleReviewUpdate = (e) => {
     e.preventDefault();
     fetch(`http://localhost:5000/api/my-review/update/${id}`, {
@@ -41,6 +42,10 @@ const UpdateReview = () => {
         toast.error("Something worng try again");
       });
   };
+
+  // add title
+  dynamicTitle("Update review");
+
   return (
     <section className="mt-3 mb-3">
       <div className="container">

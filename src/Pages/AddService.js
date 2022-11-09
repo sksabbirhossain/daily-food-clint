@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
 import FormInput from "../components/FormInput/FormInput";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const AddService = () => {
   // add service
@@ -27,7 +28,8 @@ const AddService = () => {
         e.target.reset();
       });
   };
-
+  // add title
+  dynamicTitle("Add Service");
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

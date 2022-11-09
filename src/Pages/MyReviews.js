@@ -4,10 +4,11 @@ import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/MyReviews.module.css";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [reload, setReload] = useState(true)
+  const [reload, setReload] = useState(true);
   const { currentUser } = useAuth();
   const id = currentUser.uid;
   useEffect(() => {
@@ -39,6 +40,10 @@ const MyReviews = () => {
         alert(err.message);
       });
   };
+
+  // add title
+  dynamicTitle("My reviews");
+
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

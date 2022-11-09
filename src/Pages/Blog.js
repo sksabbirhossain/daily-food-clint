@@ -1,6 +1,9 @@
 import React from "react";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const Blog = () => {
+  // add title
+  dynamicTitle("Blog Page");
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

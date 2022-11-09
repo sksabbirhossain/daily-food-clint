@@ -6,6 +6,7 @@ import Slider from "../components/Slider/Slider";
 import SocialIcons from "../components/SocialIcons/SocialIcons";
 import aboutImg from "../images/aboutus/about.jpg";
 import "../styles/Home.css";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -18,6 +19,10 @@ const Home = () => {
         setServices(data.homeData);
       });
   }, []);
+
+  // add title
+  dynamicTitle("Home page");
+  
   return (
     <>
       <Slider />

@@ -3,6 +3,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { useParams } from "react-router-dom";
 import Review from "../components/Review/Review";
+import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const ServiceDetails = () => {
   const [service, setService] = useState([]);
@@ -15,6 +16,9 @@ const ServiceDetails = () => {
         setService(data.data);
       });
   }, [id]);
+
+  // add title
+dynamicTitle(`${service.title} - service details page`)
   return (
     <>
       <section className="mt-3 mb-3">
