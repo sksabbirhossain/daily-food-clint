@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
 import { dynamicTitle } from "../utilities/dynamicTitle";
 
@@ -11,12 +12,15 @@ const Services = () => {
       .then((res) => res.json())
       .then((data) => {
         setServices(data.data);
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
   }, []);
 
   // add title
   dynamicTitle("Services page");
-  
+
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">

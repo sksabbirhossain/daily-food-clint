@@ -4,35 +4,58 @@ import { FaArrowRight } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
+import { useAuth } from "../contexts/AuthContext";
 import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const UpdateReview = () => {
   const [reviews, setReviews] = useState("");
+  const { currentUser, logOut } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/my-review/update/${id}`)
-      .then((res) => res.json())
+    fetch(
+      `http://localhost:5000/api/my-review/update/${id}?email=${currentUser?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut()
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data.data);
         setReviews(data.data);
       });
-  }, [id]);
+  }, [id,currentUser?.email, logOut]);
 
   // update review
   const handleReviewUpdate = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/my-review/update/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        review: reviews,
-      }),
-    })
-      .then((res) => res.json())
+    fetch(
+      `http://localhost:5000/api/my-review/update/${id}?email=${currentUser?.email}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          review: reviews,
+        }),
+      }
+    )
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut()
+        }
+        return res.json();
+      })
       .then((data) => {
         e.target.reset();
         navigate("/my-reviews");

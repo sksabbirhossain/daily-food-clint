@@ -10,6 +10,7 @@ import {
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Spinner from "../components/Spinner/Spinner";
 import "../firebase/firebase";
 
 const AuthContext = createContext();
@@ -53,6 +54,7 @@ export function AuthProvider({ children }) {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
+        localStorage.removeItem('token')
         toast.success("LogOut successful");
       })
       .catch((error) => {
@@ -68,10 +70,12 @@ export function AuthProvider({ children }) {
     googleSignin,
     userLogin,
     logOut,
+    loading,
   };
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

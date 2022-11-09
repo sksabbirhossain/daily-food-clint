@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import ClintLayout from "./Layouts/ClintLayout";
+import About from "./Pages/About";
 import AddService from "./Pages/AddService";
 import Blog from "./Pages/Blog";
 import Home from "./Pages/Home";
@@ -17,7 +18,8 @@ function App() {
     <Routes>
       <Route path="/" element={<ClintLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={ <Blog/>} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/about" element={<About/> } />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/services" element={<Services />} />

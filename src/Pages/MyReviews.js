@@ -9,11 +9,13 @@ import { dynamicTitle } from "../utilities/dynamicTitle";
 const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [reload, setReload] = useState(true);
-  const { currentUser } = useAuth();
+  const { currentUser, logOut } = useAuth();
   const id = currentUser.uid;
   useEffect(() => {
     fetch(`http://localhost:5000/api/my-reviews/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         setReviews(data.data);
       })
@@ -24,10 +26,21 @@ const MyReviews = () => {
 
   // delete review
   const deleteReview = (rid) => {
-    fetch(`http://localhost:5000/api/my-review/delete/${rid}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
+    fetch(
+      `http://localhost:5000/api/my-review/delete/${rid}?email=${currentUser?.email}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.success) {
           toast.success(data.message);
@@ -37,7 +50,7 @@ const MyReviews = () => {
         }
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message);
       });
   };
 

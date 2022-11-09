@@ -17,6 +17,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+ 
+
   const from = location.state?.from?.pathname || "/";
   // login user
   const handleUserLogin = (e) => {
@@ -24,9 +26,23 @@ const Login = () => {
     userLogin(email, password)
       .then((userInfo) => {
         const user = userInfo.user;
-        console.log(user);
-        navigate(from, { replace: true });
-        toast.success("Login successful");
+        //get jwt token
+        fetch("http://localhost:5000/api/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+            toast.success("Login successful");
+          });
       })
       .catch((error) => {
         console.log(error);
