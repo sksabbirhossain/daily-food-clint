@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaArrowRight } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
 
 const UpdateReview = () => {
   const [reviews, setReviews] = useState("");
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,12 +19,33 @@ const UpdateReview = () => {
       });
   }, [id]);
 
-  const handleReviewUpdate = () => {};
+    // update review
+  const handleReviewUpdate = (e) => {
+    e.preventDefault();
+    fetch(`http://localhost:5000/api/my-review/update/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        review: reviews,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        e.target.reset();
+        navigate("/my-reviews");
+        toast.success(data.message);
+      })
+      .catch((err) => {
+        toast.error("Something worng try again");
+      });
+  };
   return (
     <section className="mt-3 mb-3">
       <div className="container">
         <div className="shadow py-3 rounded">
-          <h2> Service Details</h2>
+          <h2> Update Review</h2>
         </div>
         <div>
           <Form onSubmit={handleReviewUpdate}>
