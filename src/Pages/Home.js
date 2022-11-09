@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Contact from "../components/Contact/Contact";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
 import Slider from "../components/Slider/Slider";
 import SocialIcons from "../components/SocialIcons/SocialIcons";
@@ -49,12 +50,12 @@ const Home = () => {
       {/* About us */}
       <section className="mt-4 mt-md-5 mb-5">
         <div className="container">
-          <h2>about us</h2>
+          <h2 >about us</h2>
           <div className="aboutUs mt-4">
             <div className="row">
               <div className="col-md-6">
                 <div className="d-flex flex-column h-100 ps-4 justify-content-center align-items-start">
-                  <h3>About Services</h3>
+                  <h3 className="pt-3 pt-sm-0">About Services</h3>
                   <p className="praText ">
                     I am Sabbir. I am providing food dalivery services. I cook
                     all my food at my home. I try to keep my diet very good . i
@@ -88,6 +89,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* contact serction */}
+      <Contact/>
     </>
   );
 };
