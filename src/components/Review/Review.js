@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaArrowRight } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import Button from "../Button/Button";
 import Form from "../Form/Form";
-import FormInput from "../FormInput/FormInput";
 
-const Review = ({serviceName}) => {
+const Review = ({ serviceName }) => {
   const [review, setReview] = useState("");
   const [reload, setReload] = useState(true);
   const [getReviews, setGetReviews] = useState([]);
@@ -33,6 +32,7 @@ const Review = ({serviceName}) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        e.target.reset();
         toast.success("Review Added successful");
         setReload(!reload);
       })
@@ -59,20 +59,39 @@ const Review = ({serviceName}) => {
           <h2> Review section</h2>
         </div>
         {/* add review */}
-        <div className="mb-2">
-          <Form onSubmit={handleReview}>
-            <FormInput
-              type="text"
-              name="review"
-              placeholder="write your review here"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-              required
-            />
-            <Button>
-              Add review <FaArrowRight />
-            </Button>
-          </Form>
+        <div className="my-5">
+          {currentUser ? (
+            <>
+              <Form onSubmit={handleReview}>
+                <textarea
+                  className="form-control my-2"
+                  rows="4"
+                  type="text"
+                  name="review"
+                  placeholder="write your review here"
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                  required
+                ></textarea>
+                <Button>
+                  Add review <FaArrowRight />
+                </Button>
+              </Form>
+            </>
+          ) : (
+            <>
+              <div>
+                <p>
+                  Please{" "}
+                  <Link className="text-success" to="/login">
+                    {" "}
+                    login{" "}
+                  </Link>
+                  to add a review
+                </p>
+              </div>
+            </>
+          )}
         </div>
 
         {/* all reviews */}

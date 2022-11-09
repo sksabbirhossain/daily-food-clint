@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/MyReviews.module.css";
 
@@ -46,7 +47,7 @@ const MyReviews = () => {
                                 <FaTrash />
                               </span>
                               <span className="text-success fs-5">
-                                <FaPencilAlt />
+                                <Link to={`/my-review/update/${review._id}`}><FaPencilAlt /></Link>
                               </span>
                             </div>
                           </div>

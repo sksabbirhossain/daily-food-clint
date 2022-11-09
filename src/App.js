@@ -8,6 +8,7 @@ import MyReviews from "./Pages/MyReviews";
 import ServiceDetails from "./Pages/ServiceDetails";
 import Services from "./Pages/Services";
 import Signup from "./Pages/Signup";
+import UpdateReview from "./Pages/UpdateReview";
 import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/services/:id" element={<ServiceDetails />} />
         <Route path="/add-service" element={<PrivateRoute><AddService /></PrivateRoute>} />
-        <Route path="/my-reviews" element={ <PrivateRoute><MyReviews/></PrivateRoute> } />
+        <Route path="/my-reviews" element={<PrivateRoute><MyReviews /></PrivateRoute>} />
+        <Route path="/my-review/update/:id" element={<PrivateRoute><UpdateReview/></PrivateRoute> } />
       </Route>
     </Routes>
   );
