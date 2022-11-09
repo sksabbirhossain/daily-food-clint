@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -6,19 +7,38 @@ import styles from "../styles/MyReviews.module.css";
 
 const MyReviews = () => {
   const [reviews, setReviews] = useState([]);
+  const [reload, setReload] = useState(true)
   const { currentUser } = useAuth();
   const id = currentUser.uid;
   useEffect(() => {
     fetch(`http://localhost:5000/api/my-reviews/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data);
         setReviews(data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [id, reload]);
+
+  // delete review
+  const deleteReview = (rid) => {
+    fetch(`http://localhost:5000/api/my-review/delete/${rid}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.message);
+          setReload(!reload);
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
   return (
     <section className="mt-4 mt-md-5 ">
       <div className="container">
@@ -44,10 +64,14 @@ const MyReviews = () => {
                             </div>
                             <div className="">
                               <span className="text-danger me-3 fs-5">
-                                <FaTrash />
+                                <Link onClick={() => deleteReview(review._id)}>
+                                  <FaTrash />
+                                </Link>
                               </span>
                               <span className="text-success fs-5">
-                                <Link to={`/my-review/update/${review._id}`}><FaPencilAlt /></Link>
+                                <Link to={`/my-review/update/${review._id}`}>
+                                  <FaPencilAlt />
+                                </Link>
                               </span>
                             </div>
                           </div>

@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
 
 const UpdateReview = () => {
-  const [review, setReview] = useState("");
-    const [update, setUpdate] = useState("");
-    const { id } = useParams();
+  const [reviews, setReviews] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/my-review/update/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.data);
+        setReviews(data.data);
+      });
+  }, [id]);
 
   const handleReviewUpdate = () => {};
   return (
@@ -24,10 +32,12 @@ const UpdateReview = () => {
               type="text"
               name="review"
               placeholder="write your review here"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
+              value={reviews.review}
+              onChange={(e) => setReviews(e.target.value)}
               required
-            ></textarea>
+            >
+              {reviews.review}
+            </textarea>
             <Button>
               Update review <FaArrowRight />
             </Button>
