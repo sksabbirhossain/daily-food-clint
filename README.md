@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# Daily Food
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React and node js dynamic website
 
-## Available Scripts
+To see Live website [Click here](https://daily-food-1dafd.web.app/).
+Or
+https://daily-food-1dafd.web.app/
 
-In the project directory, you can run:
+## descriptions
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. This is a react Food delivery dynamic website.
+2. here are many food delivery services. and users can also add services. if you visit this website. at fast, you see
+a beautiful slider. you can also navigate other pages.
+3. This website uses react.js and express js to used to manage servers. also, used react-router-dom for routing. design all pages by bootstrap 5. for user authentication used google firebase.
+4. Here you will find many food items. and if you click on a food item's "view details" button you can full description. and if you click any food items picture then you see this picture full screen.
+5. service details page you can see all service information and you can add reviews of this service. and "My reviews" page shows only these reviews the current user added reviews.
+6. Add services page you can add a service. but if you want to add a service you must be fast login or sign up.
+7. for managing users to used firebase authentication. here you can create an account by email password, and google account. also you will login and logOut your account.
+8. the Blog page mainly showed some questions and answers. if you just click the blog button then you will see that.

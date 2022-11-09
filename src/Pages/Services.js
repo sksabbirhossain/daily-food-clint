@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import ServiceCard from "../components/ServiceCard/ServiceCard";
+import Spinner from "../components/Spinner/Spinner";
 import { dynamicTitle } from "../utilities/dynamicTitle";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // get all services data
   useEffect(() => {
     fetch("https://daily-food-server.vercel.app/api/services")
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
+        setLoading(false);
         setServices(data.data);
       })
       .catch((err) => {
         toast.error(err.message);
       });
   }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   // add title
   dynamicTitle("Services page");

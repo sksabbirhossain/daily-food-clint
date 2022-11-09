@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
 import FormInput from "../components/FormInput/FormInput";
+import Spinner from "../components/Spinner/Spinner";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Login.module.css";
 import { dynamicTitle } from "../utilities/dynamicTitle";
@@ -13,6 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { userLogin, googleSignin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,6 +23,7 @@ const Login = () => {
   // login user
   const handleUserLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
     userLogin(email, password)
       .then((userInfo) => {
         const user = userInfo.user;
@@ -40,14 +43,19 @@ const Login = () => {
             localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
             toast.success("Login successful");
+            setLoading(false);
           });
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
+        setLoading(false);
       });
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
   // google signup function
   const handleGoogleSignIn = () => {
     googleSignin()

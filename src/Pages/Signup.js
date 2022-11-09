@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Form from "../components/Form/Form";
 import FormInput from "../components/FormInput/FormInput";
+import Spinner from "../components/Spinner/Spinner";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/Signup.module.css";
 import { dynamicTitle } from "../utilities/dynamicTitle";
@@ -17,14 +18,17 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { userSignup, googleSignin } = useAuth();
   const navigate = useNavigate();
 
   // form handle and signup function
   const handleUserSignup = (e) => {
+    setLoading(true)
     e.preventDefault();
     //   validation
     if (password !== confirmPassword) {
+      setLoading(false)
       return setError("password not match");
     }
     userSignup(email, password, username, photourl)
@@ -38,14 +42,19 @@ const Signup = () => {
           displayName: username,
           photoURL: photourl,
         });
+        setLoading(false)
         navigate("/");
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error);
         setError(error.message);
       });
   };
 
+  if (loading) {
+    return <Spinner />;
+  }
   // google signup function
   const handleGoogleSignup = () => {
     googleSignin()
