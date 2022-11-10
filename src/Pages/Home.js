@@ -50,7 +50,7 @@ const Home = () => {
       {/* About us */}
       <section className="mt-4 mt-md-5 mb-5">
         <div className="container">
-          <h2 >about us</h2>
+          <h2>about us</h2>
           <div className="aboutUs mt-4">
             <div className="row">
               <div className="col-md-6">
@@ -90,7 +90,7 @@ const Home = () => {
         </div>
       </section>
       {/* contact serction */}
-      <Contact/>
+      <Contact />
     </>
   );
 };
