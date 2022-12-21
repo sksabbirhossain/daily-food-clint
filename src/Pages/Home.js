@@ -33,7 +33,7 @@ const Home = () => {
           <h2>our Services</h2>
           <div className="card-items mt-4">
             <div className="row">
-              {services.map((service) => (
+              {services?.map((service) => (
                 <ServiceCard key={service._id} service={service} />
               ))}
             </div>
