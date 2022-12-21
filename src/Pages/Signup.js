@@ -24,17 +24,32 @@ const Signup = () => {
 
   // form handle and signup function
   const handleUserSignup = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     //   validation
     if (password !== confirmPassword) {
-      setLoading(false)
+      setLoading(false);
       return setError("password not match");
     }
     userSignup(email, password, username, photourl)
       .then((userInfo) => {
         const user = userInfo.user;
         console.log(user);
+        //get jwt token
+        fetch("https://daily-food-server.vercel.app/api/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
         toast.success("User Create Successfull");
 
         // update profile
@@ -42,11 +57,11 @@ const Signup = () => {
           displayName: username,
           photoURL: photourl,
         });
-        setLoading(false)
+        setLoading(false);
         navigate("/");
       })
       .catch((error) => {
-        setLoading(false)
+        setLoading(false);
         console.log(error);
         setError(error.message);
       });
@@ -61,6 +76,21 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        //get jwt token
+        fetch("https://daily-food-server.vercel.app/api/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
         toast.success("Google SignUp successful");
         navigate("/");
       })

@@ -61,6 +61,21 @@ const Login = () => {
     googleSignin()
       .then((result) => {
         const user = result.user;
+        //get jwt token
+        fetch("https://daily-food-server.vercel.app/api/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
         console.log(user);
         toast.success("Google SignUp successful");
         navigate("/");
