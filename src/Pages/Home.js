@@ -17,6 +17,7 @@ const Home = () => {
     fetch("https://daily-food-server.vercel.app/api/services")
       .then((res) => res.json())
       .then((data) => {
+        // console.log(data)
         setServices(data.homeData);
       });
   }, []);
